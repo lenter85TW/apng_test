@@ -18,13 +18,24 @@ oReq.onload = function () {
     }
     apng.createImages().then(() => {
 
+        apng.frames.forEach((frame)=>{console.log(frame.imageElement)});
+        apng.frames.forEach((frame) => {frame.imageElement.style.width="50px"});
+        apng.frames.forEach((frame) => {frame.imageElement.style.height="50px"});
+        apng.frames.forEach((frame)=>{console.log(frame.imageElement)});
+
         const canvasDiv = document.getElementsByClassName('canvasDiv')[0];
         const canvas = document.createElement('canvas');
-        canvas.width = 500;
-        canvas.height = 500;
+
+        //canvas의 width가 있고 style.width가 따로 있네!!!. 재생되는 이미지의 사이즈를 줄이려면 style.height에서 설정해야한다!
+        canvas.width = 320;
+        canvas.height = 320;
+        canvas.style.width = "80px";
+        canvas.style.height = "80px";
         canvasDiv.appendChild(canvas);
 
         apng.getPlayer(canvas.getContext('2d')).then(p => {
+            apng.frames.forEach((frame)=>{console.log("getPlayer안에서는?")});
+            apng.frames.forEach((frame)=>{console.log(frame.imageElement)});
             let player;
             let playbackRate = 1.0;
             console.log("_------",p);

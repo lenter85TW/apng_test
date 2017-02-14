@@ -21,13 +21,34 @@ oReq.onload = function () {
     }
     apng.createImages().then(function () {
 
+        apng.frames.forEach(function (frame) {
+            console.log(frame.imageElement);
+        });
+        apng.frames.forEach(function (frame) {
+            frame.imageElement.style.width = "50px";
+        });
+        apng.frames.forEach(function (frame) {
+            frame.imageElement.style.height = "50px";
+        });
+        apng.frames.forEach(function (frame) {
+            console.log(frame.imageElement);
+        });
+
         var canvasDiv = document.getElementsByClassName('canvasDiv')[0];
         var canvas = document.createElement('canvas');
-        canvas.width = 500;
-        canvas.height = 500;
+        canvas.width = 320;
+        canvas.height = 320;
+        canvas.style.width = "80px";
+        canvas.style.height = "80px";
         canvasDiv.appendChild(canvas);
 
         apng.getPlayer(canvas.getContext('2d')).then(function (p) {
+            apng.frames.forEach(function (frame) {
+                console.log("getPlayer안에서는?");
+            });
+            apng.frames.forEach(function (frame) {
+                console.log(frame.imageElement);
+            });
             var player = void 0;
             var playbackRate = 1.0;
             console.log("_------", p);
